@@ -19,6 +19,7 @@ parser.add_argument('--job_name', type=str, default='finetune', help='SLURM job 
 parser.add_argument('--partition', type=str, default='gr10_gpu,page', help='SLURM partition(s) to use')
 parser.add_argument('--max_memory', type=int, default=28000, help='Allocated RAM for each job')
 parser.add_argument('--time_limit', type=str, default='24:00:00', help='Timeout for the jobs')
+parser.add_argument('--nice', type=int, default=0, help='Base nice value for the jobs (default 0)')
 args = parser.parse_args()
 
 if args.model_path is None:
@@ -77,13 +78,14 @@ for task in TASKS:
         valid_name = 'mnli-mm'
         do_train = False
         model_path_full = MODEL_PATH / 'results' / 'finetune' / train_name
-        nice_value = 100 # Lower priority, since it depends on mnli
+        nice_value = args.nice + 10 # Lower priority, since it depends on mnli
+        print('Remember to set mnli as a dependency of mnli-mm using: sbatch --dependency=afterok:<MNLI-JOB-ID> path/to/slurm-finetune-mnli-mm.sh')
     else:
         train_name = task
         valid_name = task
         do_train = True
         model_path_full = MODEL_PATH
-        nice_value = 0
+        nice_value = args.nice
 
     executable_path = Path('.').resolve() / 'finetune_classification.py'
     train_file = Path('.').resolve() / 'evaluation_data' / 'glue_filtered'/ f'{train_name}.train.jsonl'
