@@ -14,23 +14,29 @@ pyenv activate babylm  # activate virtual environment
 # Edit the arguments below
 MODEL_PATH=../baby-llama2/results/baby-llama-58m/
 BATCH_SIZE=128
+RUN_BLIMP=true
+RUN_EWOK=true
 
 MODEL_PATH=$(realpath "$MODEL_PATH")
 
-python -m lm_eval --model hf \
-    --model_args pretrained="$MODEL_PATH",backend="causal" \
-    --tasks ewok_filtered \
-    --device cuda:0 \
-    --batch_size $BATCH_SIZE \
-    --log_samples \
-    --trust_remote_code \
-    --output_path "$MODEL_PATH"/results/ewok/ewok_results.json
+if $RUN_EWOK; then
+    python -m lm_eval --model hf \
+        --model_args pretrained="$MODEL_PATH",backend="causal" \
+        --tasks ewok_filtered \
+        --device cuda:0 \
+        --batch_size $BATCH_SIZE \
+        --log_samples \
+        --trust_remote_code \
+        --output_path "$MODEL_PATH"/results/ewok/ewok_results.json
+fi
 
-python -m lm_eval --model hf \
-    --model_args pretrained="$MODEL_PATH",backend="causal" \
-    --tasks blimp_filtered,blimp_supplement \
-    --device cuda:0 \
-    --batch_size $BATCH_SIZE \
-    --log_samples \
-    --trust_remote_code \
-    --output_path "$MODEL_PATH"/results/blimp/blimp_results.json
+if $RUN_BLIMP; then
+    python -m lm_eval --model hf \
+        --model_args pretrained="$MODEL_PATH",backend="causal" \
+        --tasks blimp_filtered,blimp_supplement \
+        --device cuda:0 \
+        --batch_size $BATCH_SIZE \
+        --log_samples \
+        --trust_remote_code \
+        --output_path "$MODEL_PATH"/results/blimp/blimp_results.json
+fi
