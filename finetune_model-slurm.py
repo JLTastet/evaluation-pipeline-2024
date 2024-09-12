@@ -18,7 +18,7 @@ parser.add_argument('--trust_remote_code', action='store_true', help='Trust remo
 parser.add_argument('--job_name', type=str, default='finetune', help='SLURM job name')
 parser.add_argument('--partition', type=str, default='gr10_gpu,page', help='SLURM partition(s) to use')
 parser.add_argument('--max_memory', type=int, default=28000, help='Allocated RAM for each job')
-parser.add_argument('--time_limit', type=str, default='24:00:00', help='Timeout for the jobs')
+parser.add_argument('--time_limit', type=str, default='36:00:00', help='Timeout for the jobs')
 parser.add_argument('--nice', type=int, default=0, help='Base nice value for the jobs (default 0)')
 args = parser.parse_args()
 
@@ -55,6 +55,7 @@ HYPERPARAMETERS_2023 = {
 }
 
 HYPERPARAMETERS = DEFAULT_HYPERPARAMETERS
+#HYPERPARAMETERS = HYPERPARAMETERS_2023 # For last year’s submission
 
 # For pyenv
 ENV_ACTIVATION = '''\
@@ -92,11 +93,11 @@ for task in TASKS:
     validation_file = Path('.').resolve() / 'evaluation_data' / 'glue_filtered' / f'{valid_name}.valid.jsonl'
 
     cmdline = f'''\
-python {executable_path} \\
+python "{executable_path}" \\
     --model_name_or_path "{model_path_full}" \\
     --output_dir "{task_path}" \\
-    --train_file {train_file} \\
-    --validation_file {validation_file} \\
+    --train_file "{train_file}" \\
+    --validation_file "{validation_file}" \\
     --do_train {do_train} \\
     --do_eval \\
     --do_predict \\
