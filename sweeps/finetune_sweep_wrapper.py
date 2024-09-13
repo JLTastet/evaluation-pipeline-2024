@@ -57,6 +57,7 @@ python "{executable_path}" \\
 --learning_rate {args.learning_rate} \\
 --per_device_train_batch_size {args.batch_size} \\
 --num_train_epochs {args.num_train_epochs} \\
+--patience {args.num_train_epochs+1} \\
 --weight_decay {args.weight_decay} \\
 --lr_scheduler_type {args.lr_scheduler_type} \\
 --warmup_steps {args.warmup_steps} \\

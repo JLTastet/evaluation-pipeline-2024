@@ -24,3 +24,4 @@ evaluation_data/
 results/
 supplement_filtered/
 sweeps/results
+sweeps/logs

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=wsc
-#SBATCH --output=../logs/wsc-%j.log
+#SBATCH --output=sweeps/logs/wsc-%j.log
 #SBATCH --partition=page
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
@@ -12,4 +12,4 @@ source "$HOME"/.bashrc
 pyenv activate babylm  # activate virtual environment
 
 # WSC
-wandb agent --count 1 polargeese/babylm2-finetune-sweeps/vo1kbpna
+wandb agent --count 1 polargeese/babylm2-finetune-sweeps/7ft96ztf
