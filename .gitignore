@@ -23,3 +23,4 @@ examples/wandb
 evaluation_data/
 results/
 supplement_filtered/
+sweeps/results
