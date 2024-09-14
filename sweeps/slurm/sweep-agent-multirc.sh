@@ -12,4 +12,4 @@ source "$HOME"/.bashrc
 pyenv activate babylm  # activate virtual environment
 
 # MultiRC
-wandb agent --config 1 polargeese/babylm2-finetune-sweeps/u58fjevx
+wandb agent --count 1 polargeese/babylm2-finetune-sweeps/u58fjevx
