@@ -1,10 +1,10 @@
 program: sweeps/finetune_sweep_wrapper.py
 project: babylm2-finetune-sweeps
-name: finetune-sweep-cola
+name: finetune-sweep-multirc
 method: bayes
 metric:
   goal: maximize
-  name: eval/mcc
+  name: eval/accuracy
 early_terminate:
   type: hyperband
   min_iter: 1
@@ -18,11 +18,11 @@ command:
   - ${args}
 parameters:
   task:
-    value: cola
+    value: multirc
   learning_rate:
     distribution: log_normal
-    mu: -9.9
-    sigma: 1
+    mu: -9
+    sigma: 1.5
   batch_size:
     distribution: q_log_uniform_values
     min: 1
@@ -39,7 +39,7 @@ parameters:
     values: ["linear", "cosine", "constant"]
   warmup_steps:
     distribution: q_log_normal
-    mu: 5.7
+    mu: 6
     sigma: 1
   seed:
     value: 12

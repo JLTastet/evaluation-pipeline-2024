@@ -1,10 +1,10 @@
 program: sweeps/finetune_sweep_wrapper.py
 project: babylm2-finetune-sweeps
-name: finetune-sweep-cola
+name: finetune-sweep-mrpc
 method: bayes
 metric:
   goal: maximize
-  name: eval/mcc
+  name: eval/f1
 early_terminate:
   type: hyperband
   min_iter: 1
@@ -18,7 +18,7 @@ command:
   - ${args}
 parameters:
   task:
-    value: cola
+    value: mrpc
   learning_rate:
     distribution: log_normal
     mu: -9.9

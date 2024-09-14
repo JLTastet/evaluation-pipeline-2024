@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=rte
-#SBATCH --output=sweeps/logs/rte-%j.log
+#SBATCH --job-name=boolq
+#SBATCH --output=sweeps/logs/boolq-%j.log
 #SBATCH --partition=page
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
@@ -11,5 +11,5 @@
 source "$HOME"/.bashrc
 pyenv activate babylm  # activate virtual environment
 
-# RTE
-wandb agent --count 1 polargeese/babylm2-finetune-sweeps/svmjaz0r
+# BoolQ
+wandb agent --count 1 polargeese/babylm2-finetune-sweeps/hvdg52f7
