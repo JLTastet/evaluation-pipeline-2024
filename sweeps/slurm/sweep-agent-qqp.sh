@@ -6,11 +6,14 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=28000
-#SBATCH --time=4:00:00
+#SBATCH --time=8:00:00
 #SBATCH --nice=10
 
 source "$HOME"/.bashrc
 pyenv activate babylm  # activate virtual environment
 
-# QQP
-wandb agent --count 1 polargeese/babylm2-finetune-sweeps/ijerenc8
+# QQP (initial sweep)
+#wandb agent --count 1 polargeese/babylm2-finetune-sweeps/ijerenc8
+
+# QQP (extended)
+wandb agent --count 1 polargeese/babylm2-finetune-sweeps/sbr9siw7

@@ -12,5 +12,8 @@
 source "$HOME"/.bashrc
 pyenv activate babylm  # activate virtual environment
 
-# MNLI
-wandb agent --count 1 polargeese/babylm2-finetune-sweeps/udh8dmv6
+# MNLI (initial sweep)
+#wandb agent --count 1 polargeese/babylm2-finetune-sweeps/udh8dmv6
+
+# MNLI (extended)
+wandb agent --count 1 polargeese/babylm2-finetune-sweeps/vg6h1leo
