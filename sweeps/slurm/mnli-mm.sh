@@ -11,9 +11,14 @@
 source "$HOME"/.bashrc
 pyenv activate babylm  # activate virtual environment
 
+#MODEL_PATH=../baby-llama2/results/SmolLlama-345M-2_teachers
+#MODEL_PATH=../baby-llama2/models/SmolLlama-345M/47108234
+#MODEL_PATH=../baby-llama2/results/SmolLlama-345M-sweep/best-240911-1207
+MODEL_PATH=../baby-llama2/models/SmolLlama-345M-2_teachers/47109224
+
 python finetune_classification.py \
-    --model_name_or_path ../baby-llama2/results/SmolLlama-345M-2_teachers/results/finetune/mnli/1e-5 \
-    --output_dir ../baby-llama2/results/SmolLlama-345M-2_teachers/results/finetune/mnli-mm/1e-5 \
+    --model_name_or_path "$MODEL_PATH"/results/finetune/mnli \
+    --output_dir "$MODEL_PATH"/results/finetune/mnli-mm \
     --train_file evaluation_data/glue_filtered/mnli.train.jsonl \
     --validation_file evaluation_data/glue_filtered/mnli-mm.valid.jsonl \
     --do_train False \

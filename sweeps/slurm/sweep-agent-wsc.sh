@@ -15,9 +15,13 @@ pyenv activate babylm  # activate virtual environment
 #wandb agent --count 1 polargeese/babylm2-finetune-sweeps/7ft96ztf
 
 # Final run with the optimal parameters
+#MODEL_PATH=../baby-llama2/results/SmolLlama-345M-2_teachers
+#MODEL_PATH=../baby-llama2/models/SmolLlama-345M/47108234
+#MODEL_PATH=../baby-llama2/results/SmolLlama-345M-sweep/best-240911-1207
+MODEL_PATH=../baby-llama2/models/SmolLlama-345M-2_teachers/47109224
 python finetune_classification.py \
-    --model_name_or_path ../baby-llama2/results/SmolLlama-345M-2_teachers \
-    --output_dir ../baby-llama2/results/SmolLlama-345M-2_teachers/results/finetune/wsc \
+    --model_name_or_path "$MODEL_PATH" \
+    --output_dir "$MODEL_PATH"/results/finetune/wsc \
     --train_file evaluation_data/glue_filtered/wsc.train.jsonl \
     --validation_file evaluation_data/glue_filtered/wsc.valid.jsonl \
     --do_train True \
